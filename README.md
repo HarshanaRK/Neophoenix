@@ -1,4 +1,3 @@
-
 # NeoPhoenix - Campus Emergency App  
 
 🚀 A React Native app for campus safety, enabling users to send emergency alerts with real-time location sharing.  
@@ -101,12 +100,11 @@ Response:
 
 ## Contributers
 
-Harshana RK
 Krishna Kumar,
 Vishal LSK,
-Vengidakrishna A,
+Harshana RK,
 Sugash ,
-Indrajith 
+Inrajith 
   
 
 ## License  
