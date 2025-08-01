@@ -34,69 +34,11 @@ NeoPhoenix is a campus safety mobile app that allows students and faculty to sen
 - Storage: AsyncStorage  
 - Location Tracking: Expo Location  
 
-## Installation  
-
-### Clone the Repository  
-```
-git clone https://github.com/krishna221638/NeoPhoenix_frontend.git
-cd NeoPhoenix
-```
-
-### Install Dependencies  
-```
-npm install
-```
-
-### Start the App  
-```
-npx expo start
-```
-
 ## Usage  
 1. Register as a Student or Faculty  
 2. Press the SOS Button to send emergency alerts  
 3. Select Emergency Type (Medical, Fire, Violence, Disaster)  
 4. Admins receive real-time notifications  
-
-## Backend Setup  
-1. Navigate to the backend folder  
-```
-cd backend
-```
-2. Install dependencies  
-```
-npm install
-```
-3. Set up Twilio API keys in `.env`  
-```
-TWILIO_SID=your_twilio_sid  
-TWILIO_AUTH_TOKEN=your_auth_token  
-TWILIO_PHONE_NUMBER=your_twilio_number  
-```
-4. Start the backend server  
-```
-node server.js
-```
-
-## API Integration  
-
-### Send SOS Alert  
-**POST /send-sos**  
-Request Body:  
-```json
-{
-  "phone": "+911234567890",
-  "message": "Emergency! Please help!",
-  "location": "12.9716° N, 77.5946° E"
-}
-```
-Response:  
-```json
-{
-  "status": "Message sent successfully!"
-}
-```
- 
 
 ## Contributers
 
