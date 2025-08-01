@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Dashboard</title>
+    <!-- Material UI Fonts and Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- React, ReactDOM and Material UI via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@mui/material@5.11.12/umd/material-ui.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/javascript">
+      const {
+        Container,
+        Box,
+        Typography,
+        Paper,
+        Table,
+        TableBody,
+        TableCell,
+        TableContainer,
+        TableHead,
+        TableRow,
+        CssBaseline
+      } = MaterialUI;
+
+      // Injected notifications data from the server.
+      const notifications = {NOTIFICATIONS_DATA};
+      
+      function Dashboard() {
+        return React.createElement(
+          Container,
+          { maxWidth: 'lg', style: { marginTop: '40px', marginBottom: '40px' } },
+          React.createElement(CssBaseline),
+          // Header
+          React.createElement(
+            Box,
+            { mb: 4, textAlign: 'center' },
+            React.createElement(
+              Typography,
+              { variant: 'h3', component: 'h1', color: 'primary', gutterBottom: true },
+              'SOS Notifications Dashboard'
+            ),
+            React.createElement(
+              Typography,
+              { variant: 'subtitle1', color: 'textSecondary' },
+              'Real-time SOS alerts from our Firestore database'
+            )
+          ),
+          // Table for notifications data
+          React.createElement(
+            Paper,
+            { elevation: 3, style: { padding: '20px' } },
+            React.createElement(
+              TableContainer,
+              null,
+              React.createElement(
+                Table,
+                { stickyHeader: true },
+                React.createElement(
+                  TableHead,
+                  { style: { backgroundColor: '#f5f5f5' } },
+                  React.createElement(
+                    TableRow,
+                    null,
+                    React.createElement(TableCell, { style: { fontWeight: 'bold' } }, 'Priority'),
+                    React.createElement(TableCell, { style: { fontWeight: 'bold' } }, 'Message'),
+                    React.createElement(TableCell, { style: { fontWeight: 'bold' } }, 'Location'),
+                    React.createElement(TableCell, { style: { fontWeight: 'bold' } }, 'Name'),
+                    React.createElement(TableCell, { style: { fontWeight: 'bold' } }, 'Mobile'),
+                    React.createElement(TableCell, { style: { fontWeight: 'bold' } }, 'Emergency Contact'),
+                    React.createElement(TableCell, { style: { fontWeight: 'bold' } }, 'Timestamp')
+                  )
+                ),
+                React.createElement(
+                  TableBody,
+                  null,
+                  notifications.map(row =>
+                    React.createElement(
+                      TableRow,
+                      { key: row.id },
+                      React.createElement(TableCell, null, row.priority),
+                      React.createElement(TableCell, null, row.message),
+                      React.createElement(
+                        TableCell,
+                        null,
+                        'Lat: ' + row.location.latitude + ', Long: ' + row.location.longitude
+                      ),
+                      React.createElement(TableCell, null, row.name),
+                      React.createElement(TableCell, null, row.mobile),
+                      React.createElement(TableCell, null, row.emergencyContact),
+                      React.createElement(TableCell, null, row.timestamp)
+                    )
+                  )
+                )
+              )
+            )
+          )
+        );
+      }
+      
+      ReactDOM.render(
+        React.createElement(Dashboard),
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>

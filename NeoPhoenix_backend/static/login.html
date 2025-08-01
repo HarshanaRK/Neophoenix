@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | NeoPhoenix</title>
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Material UI -->
+    <script src="https://unpkg.com/@mui/material@5.11.12/umd/material-ui.development.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <div id="login-root"></div>
+    <script type="text/javascript">
+      const { Container, Button, TextField, Typography, CssBaseline } = MaterialUI;
+
+      // Function to render login form
+      function renderLogin() {
+        function Login() {
+          const [email, setEmail] = React.useState("");
+          const [password, setPassword] = React.useState("");
+          const [error, setError] = React.useState("");
+
+          const handleSubmit = async (e) => {
+            e.preventDefault();
+            try {
+              // Call /api/login with email/password to obtain idToken
+              const loginResponse = await fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+              });
+              if (loginResponse.ok) {
+                const data = await loginResponse.json();
+                // On success, redirect to the dashboard.
+                window.location.href = "/dashboard";
+              } else {
+                const err = await loginResponse.json();
+                setError(err.error || "Login failed");
+              }
+            } catch (err) {
+              setError("An error occurred during login.");
+            }
+          };
+
+          return React.createElement(
+            Container,
+            { maxWidth: "sm", style: { marginTop: "50px" } },
+            React.createElement(CssBaseline, null),
+            React.createElement(
+              Typography,
+              { variant: "h4", gutterBottom: true },
+              "Login to NeoPhoenix"
+            ),
+            error &&
+              React.createElement(
+                Typography,
+                { variant: "body1", color: "error" },
+                error
+              ),
+            React.createElement(
+              "form",
+              { onSubmit: handleSubmit },
+              React.createElement(TextField, {
+                fullWidth: true,
+                label: "Email",
+                margin: "normal",
+                value: email,
+                onChange: (e) => setEmail(e.target.value)
+              }),
+              React.createElement(TextField, {
+                fullWidth: true,
+                label: "Password",
+                type: "password",
+                margin: "normal",
+                value: password,
+                onChange: (e) => setPassword(e.target.value)
+              }),
+              React.createElement(
+                Button,
+                {
+                  variant: "contained",
+                  color: "primary",
+                  type: "submit",
+                  style: { marginTop: "20px" }
+                },
+                "Login"
+              )
+            )
+          );
+        }
+
+        ReactDOM.render(
+          React.createElement(Login),
+          document.getElementById("login-root")
+        );
+      }
+
+      renderLogin();
+    </script>
+  </body>
+</html>

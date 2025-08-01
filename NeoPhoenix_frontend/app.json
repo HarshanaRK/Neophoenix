@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "NeoPhoenix",
+    "slug": "NeoPhoenix",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app needs access to your location to send emergency alerts with your current position.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to your location to send emergency alerts even when in background."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE"
+      ],
+      "package": "com.yourcompany.neophoenix",
+      "targetSdkVersion": 33,
+      "softwareKeyboardLayoutMode": "resize"
+    },
+    "plugins": ["expo-location"],
+    "web": {}
+  }
+}
